@@ -2,24 +2,17 @@ var btn = document.getElementById('getNot');
 var date = new Date();
 date.setMinutes(date.getMinutes() - 2);
 const ISOFormat = date.toISOString();
-async function getNotification() {
-  var token = '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';
-  fetch(
-    'https://api.github.com/repos/rj200113/Test-repo/issues?since=' + ISOFormat,
-    {
-      headers: {
-        Authorization: `token ${token}`,
-      },
-    }
-  )
-    .then((res) => res.json())
-    .then((json) => {
-      console.log(
-        'https://api.github.com/repos/rj200113/Test-repo/issues?since=' +
-          ISOFormat
-      );
-      console.log(json);
-    });
+function getNotification() {
+  for (items in localStorage) {
+    var detail = JSON.parse(localStorage.getItem(items));
+    console.log(detail);
+    const list = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = detail.url;
+    link.innerHTML = detail.title;
+    list.appendChild(link);
+    document.body.appendChild(list);
+  }
 
   // result.forEach((element) => {
   //   const para = document.createElement('p');
@@ -29,6 +22,6 @@ async function getNotification() {
   // console.log(result);
 }
 
-setInterval(getNotification, 120000);
+getNotification();
 
 // btn.addEventListener('click', getNotification);

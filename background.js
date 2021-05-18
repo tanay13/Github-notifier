@@ -15,10 +15,13 @@ async function getNotification() {
     .then((json) => {
       console.log(url);
       json.forEach((element) => {
-        console.log(element.html_url);
-        console.log(element.title);
+        var details = {
+          title: element.title,
+          url: element.html_url,
+        };
+
+        localStorage.setItem(element.title, JSON.stringify(details));
       });
-      //   console.log(json);
     });
 }
 
