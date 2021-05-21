@@ -1,11 +1,10 @@
 async function getNotification() {
   var token = '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';
   var date = new Date();
-  date.setMinutes(date.getMinutes() - 2);
+  date.setMinutes(date.getMinutes() - 10000);
   const ISOFormat = date.toISOString();
   var url =
-    'https://api.github.com/repos/rj200113/Test-repo/issues?page=1&per_page=5&since=' +
-    ISOFormat;
+    'https://api.github.com/repos/rj200113/Test-repo/issues?page=1&per_page=5';
   fetch(url, {
     headers: {
       Authorization: `token ${token}`,
@@ -13,7 +12,6 @@ async function getNotification() {
   })
     .then((res) => res.json())
     .then((json) => {
-      console.log(json);
       var myobj = [];
       json.forEach((element) => {
         // var detail = {
@@ -31,4 +29,6 @@ async function getNotification() {
     });
 }
 
-setInterval(getNotification, 12000);
+getNotification();
+
+// setInterval(getNotification, 12000);
