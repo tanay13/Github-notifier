@@ -7,7 +7,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["background.js", "popup.js"],
     "persistent": true
   },
 

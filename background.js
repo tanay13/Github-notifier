@@ -1,10 +1,9 @@
 async function getNotification() {
   var token = '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';
   var date = new Date();
-  date.setMinutes(date.getMinutes() - 10000);
+  date.setMinutes(date.getMinutes() - 2);
   const ISOFormat = date.toISOString();
-  var url =
-    'https://api.github.com/repos/rj200113/Test-repo/issues?page=1&per_page=5';
+  var url = 'https://api.github.com/repos/rj200113/Test-repo/issues';
   fetch(url, {
     headers: {
       Authorization: `token ${token}`,
@@ -12,12 +11,12 @@ async function getNotification() {
   })
     .then((res) => res.json())
     .then((json) => {
+      if (json.length === 0) {
+        console.log('empty');
+        return;
+      }
       var myobj = [];
       json.forEach((element) => {
-        // var detail = {
-        //   title: element.title,
-        //   url: element.html_url,
-        // };
         myobj.push({
           title: element.title,
           url: element.html_url,
@@ -29,6 +28,8 @@ async function getNotification() {
     });
 }
 
-getNotification();
+// getNotification();
 
-// setInterval(getNotification, 12000);
+// chrome.runtime.onInstalled.addListener(getNotification);
+
+setInterval(getNotification, 60000);
