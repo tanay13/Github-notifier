@@ -1,3 +1,5 @@
+var container = document.getElementById('container');
+
 function getNotification() {
   chrome.storage.sync.get('key', (result) => {
     const arr = result.key;
@@ -18,7 +20,7 @@ function getNotification() {
       link.href = detail.url;
       link.innerHTML = detail.title;
       list.appendChild(link);
-      document.body.appendChild(list);
+      container.appendChild(list);
     }
   });
 }
@@ -28,3 +30,15 @@ getNotification();
 // setInterval(getNotification, 2000);
 
 // window.addEventListener('storage', getNotification);
+
+var btn = document.getElementById('btn');
+
+btn.addEventListener('click', () => {
+  chrome.storage.sync.remove(['key'], function () {
+    // Your code
+    // This is an asyn function
+    localStorage.clear();
+    container.innerHTML = '';
+    console.log('deleted');
+  });
+});

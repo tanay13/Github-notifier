@@ -3,7 +3,8 @@ async function getNotification() {
   var date = new Date();
   date.setMinutes(date.getMinutes() - 2);
   const ISOFormat = date.toISOString();
-  var url = 'https://api.github.com/repos/rj200113/Test-repo/issues';
+  var url =
+    'https://api.github.com/repos/rj200113/Test-repo/issues?since=' + ISOFormat;
   fetch(url, {
     headers: {
       Authorization: `token ${token}`,
@@ -17,6 +18,18 @@ async function getNotification() {
       }
       var myobj = [];
       json.forEach((element) => {
+        chrome.notifications.create(
+          '',
+          {
+            type: 'basic',
+            iconUrl: '2020-12-26.jpg',
+            title: element.title,
+            message: 'new issue opened!',
+          },
+          function () {
+            console.log('Last error:', chrome.runtime.lastError);
+          }
+        );
         myobj.push({
           title: element.title,
           url: element.html_url,
@@ -25,6 +38,8 @@ async function getNotification() {
       chrome.storage.sync.set({ key: myobj }, () => {
         console.log('saved');
       });
+
+      // console.log(json);
     });
 }
 
