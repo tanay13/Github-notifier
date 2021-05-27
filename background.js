@@ -3,8 +3,13 @@ async function getNotification() {
   var date = new Date();
   date.setMinutes(date.getMinutes() - 2);
   const ISOFormat = date.toISOString();
+  var repoLink;
+  chrome.storage.sync.get(['repo'], (repo) => {
+    if (!repo.repo) repoLink = 'rj200113/Test-repo';
+    else repoLink = repo.repo;
+  });
   var url =
-    'https://api.github.com/repos/rj200113/Test-repo/issues?since=' + ISOFormat;
+    'https://api.github.com/repos/' + repoLink + '/issues?since=' + ISOFormat;
   fetch(url, {
     headers: {
       Authorization: `token ${token}`,

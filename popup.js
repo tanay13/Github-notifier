@@ -1,5 +1,12 @@
 var container = document.getElementById('container');
 
+chrome.storage.sync.get(['repo'], (repo) => {
+  console.log(repo.repo);
+  if (!repo.repo)
+    document.getElementById('name').innerHTML = 'rj200113/Test-repo';
+  else document.getElementById('name').innerHTML = repo.repo;
+});
+
 function getNotification() {
   chrome.storage.sync.get('key', (result) => {
     const arr = result.key;
