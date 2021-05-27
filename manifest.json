@@ -11,5 +11,7 @@
     "persistent": true
   },
 
-  "permissions": ["storage", "notifications"]
+  "permissions": ["storage", "notifications"],
+
+  "options_page": "options.html"
 }
