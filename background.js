@@ -28,7 +28,7 @@ async function getNotification() {
             '',
             {
               type: 'basic',
-              iconUrl: '2020-12-26.jpg',
+              iconUrl: 'globe.jpg',
               title: element.title,
               message: 'new issue opened!',
             },
@@ -48,9 +48,5 @@ async function getNotification() {
       });
   });
 }
-
-// getNotification();
-
-// chrome.runtime.onInstalled.addListener(getNotification);
 
 setInterval(getNotification, 60000);
