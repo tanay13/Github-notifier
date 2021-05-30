@@ -1,4 +1,4 @@
-var container = document.getElementById('container');
+var container = document.getElementById('ordered-list');
 
 chrome.storage.sync.get(['repo'], (repo) => {
   console.log(repo.repo);
@@ -23,10 +23,25 @@ function getNotification() {
     for (var i = 0; i < localStorage.length; i++) {
       var detail = JSON.parse(localStorage.getItem(localStorage.key(i)));
       const list = document.createElement('li');
+      list.classList.add('list-group-item');
+      list.classList.add('d-flex');
+      list.classList.add('justify-content-between');
+      list.classList.add('align-items-start');
       const link = document.createElement('a');
+      const heading = document.createElement('div');
+      const subheading = document.createElement('div');
+      subheading.classList.add('fw-bold');
+      heading.classList.add('ms-2');
+      heading.classList.add('me-auto');
+      heading.innerText = detail.title;
+      heading.appendChild(subheading);
+
+      link.innerHTML = 'detail.title';
+
       link.href = detail.url;
-      link.innerHTML = detail.title;
-      list.appendChild(link);
+      link.innerText = 'Click here';
+      subheading.appendChild(link);
+      list.appendChild(heading);
       container.appendChild(list);
     }
   });

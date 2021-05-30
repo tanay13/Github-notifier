@@ -13,5 +13,6 @@
 
   "permissions": ["storage", "notifications"],
 
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js; object-src 'self'"
 }
