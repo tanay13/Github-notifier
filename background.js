@@ -28,7 +28,7 @@ async function getNotification() {
             '',
             {
               type: 'basic',
-              iconUrl: 'globe.jpg',
+              iconUrl: '/assets/globe.jpg',
               title: element.title,
               message: 'new issue opened!',
             },
