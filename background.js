@@ -1,5 +1,5 @@
 async function getNotification() {
-  var token = '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';
+  var token = '';
   var date = new Date();
   date.setMinutes(date.getMinutes() - 2);
   const ISOFormat = date.toISOString();
